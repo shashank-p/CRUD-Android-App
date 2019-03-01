@@ -14,18 +14,18 @@ public class Model {
     public String getId(){
         return id;
     }
-    public String getNis(){
+    public String getUId(){
         return uid;
     }
-    public String getNama(){
+    public String getName(){
         return name;
     }
 
-    public String getTelp(){
+    public String getPhone(){
         return phone;
     }
 
-    public String getAlamat(){
+    public String getAddress(){
         return address;
     }
 }

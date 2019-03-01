@@ -67,10 +67,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Model listItem = listItems.get(position);
         holder.id.setText(listItem.getId());
-        holder.uid.setText(listItem.getNis());
-        holder.name.setText(listItem.getNama());
-        holder.address.setText(listItem.getAlamat());
-        holder.phone.setText(listItem.getTelp());
+        holder.uid.setText(listItem.getUId());
+        holder.name.setText(listItem.getName());
+        holder.address.setText(listItem.getAddress());
+        holder.phone.setText(listItem.getPhone());
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                 final ProgressDialog dialog = new ProgressDialog(view.getContext());
                 dialog.setMessage("Loading Delete Data");
                 final CharSequence[] dialogitem = {"View Data","Edit Data","Delete Data"};
-                builder.setTitle(listItem.getNama());
+                builder.setTitle(listItem.getName());
                 builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -88,26 +88,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                             case 0 :
                                 Intent intent = new Intent(view.getContext(), DetailData.class);
                                 intent.putExtra("id", listItem.getId());
-                                intent.putExtra("uid",listItem.getNis());
-                                intent.putExtra("name",listItem.getNama());
-                                intent.putExtra("address",listItem.getAlamat());
-                                intent.putExtra("phone", listItem.getTelp());
+                                intent.putExtra("uid",listItem.getUId());
+                                intent.putExtra("name",listItem.getName());
+                                intent.putExtra("address",listItem.getAddress());
+                                intent.putExtra("phone", listItem.getPhone());
                                 view.getContext().startActivity(intent);
                                 break;
                             case 1 :
 
                                 Intent intent2 = new Intent(view.getContext(), EditActivity.class);
                                 intent2.putExtra("id", listItem.getId());
-                                intent2.putExtra("uid",listItem.getNis());
-                                intent2.putExtra("name",listItem.getNama());
-                                intent2.putExtra("address",listItem.getAlamat());
-                                intent2.putExtra("phone", listItem.getTelp());
+                                intent2.putExtra("uid",listItem.getUId());
+                                intent2.putExtra("name",listItem.getName());
+                                intent2.putExtra("address",listItem.getAddress());
+                                intent2.putExtra("phone", listItem.getPhone());
                                 view.getContext().startActivity(intent2);
                                 break;
                             case 2 :
 
                                 AlertDialog.Builder builderDel = new AlertDialog.Builder(view.getContext());
-                                builderDel.setTitle(listItem.getNama());
+                                builderDel.setTitle(listItem.getName());
                                 builderDel.setMessage("Are You Sure, You Want to Delete Data?");
                                 builderDel.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
@@ -120,7 +120,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
                                             public void onResponse(String response) {
                                                 dialog.hide();
                                                 dialog.dismiss();
-                                                Toast.makeText(view.getContext(),"Successfully Deleted Data "+ listItem.getNama(),Toast.LENGTH_LONG).show();
+                                                Toast.makeText(view.getContext(),"Successfully Deleted Data "+ listItem.getName(),Toast.LENGTH_LONG).show();
                                                 ListActivity.ma.refresh_list();
 
                                             }
